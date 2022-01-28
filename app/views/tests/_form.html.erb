@@ -1,0 +1,71 @@
+<%= form_with(model: test) do |form| %>
+  <% if test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(test.errors.count, "error") %> prohibited this Test from being saved:</h2>
+
+      <ul>
+        <% test.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card">
+    <div class="card-body">
+
+      <div class="row form-group">
+        <%= form.label :name, class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-sm-10">
+          <%= form.text_field :name, class: "form-control", placeholder: "Please input name", required: true %>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <%= form.label :Description, class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-sm-10">
+          <%= form.text_area :description, class: "form-control", placeholder: "Please input description", required: true %>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <%= form.label :Duration, class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-sm-10">
+          <%= form.number_field :duration, class: "form-control", placeholder: "Please input duration", required: true %>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <%= form.label "Attempt times", class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-sm-10">
+          <%= form.number_field :attempt_times, class: "form-control", placeholder: "Please input Attempt times", required: true %>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <%= form.label "Open time", class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-sm-10">
+          <%= form.datetime_select :open_time, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <%= form.label "Close time", class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-sm-10">
+          <%= form.datetime_select :close_time, class: "form-control" %>
+        </div>
+      </div>
+      <div class="row form-group">
+        <%= form.label "Release time", class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-sm-10">
+          <%= form.datetime_select :release_time, class: "form-control" %>
+        </div>
+      </div>
+
+
+      <div class="d-flex justify-content-end">
+        <%= form.submit "Save changes", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
