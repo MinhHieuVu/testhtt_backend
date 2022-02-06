@@ -120,6 +120,11 @@ class SetupBase < ActiveRecord::Migration[6.1]
 
       t.timestamps null: false
     end
+    add_index :categories, :name
+    add_index :categories, :parent_id
+    add_index :categories, :lft
+    add_index :categories, :rgt
+    add_index :categories, :slug, unique: true
 
 
 

@@ -62,6 +62,11 @@ ActiveRecord::Schema.define(version: 2022_01_27_155328) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_category_id"], name: "index_categories_on_group_category_id"
+    t.index ["lft"], name: "index_categories_on_lft"
+    t.index ["name"], name: "index_categories_on_name"
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
+    t.index ["rgt"], name: "index_categories_on_rgt"
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "group_categories", charset: "utf8mb4", force: :cascade do |t|
