@@ -1,0 +1,64 @@
+<%= form_with(model: group_question) do |form| %>
+  <% if group_question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group_question.errors.count, "error") %> prohibited this Test from being saved:</h2>
+
+      <ul>
+        <% group_question.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card">
+    <div class="card-body">
+
+      <div class="row form-group">
+        <%= form.label :name, class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-sm-10">
+          <%= form.text_field :name, class: "form-control", placeholder: "Please input name", required: true %>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <%= form.label :Description, class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-sm-10">
+          <%= form.text_area :description, class: "form-control", placeholder: "Please input description", required: true %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= form.label "Content", class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-lg-10">
+          <%= form.text_area :content, class: "form-control", placeholder: "Please input Content", required: true %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label "Guide", class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-lg-10">
+          <%= form.text_field :guide, class: "form-control", placeholder: "Please input Guide", required: true %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <%= form.label "Transcript", class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-lg-10">
+          <%= form.text_field :transcript, class: "form-control", placeholder: "Please input Transcript", required: true %>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <%= form.label :Test, class: "col-sm-2 col-form-label input-label" %>
+        <div class="col-sm-10">
+          <%= form.select :test_id, options_for_select(Test.all.collect{|a| [a.name, a.id]}, @group_question.test.present? ? @group_question.test.id : ""), {include_blank: "-- Please select test --"}, {class: "form-control", required: true} %>
+        </div>
+      </div>
+
+
+      <div class="d-flex justify-content-end">
+        <%= form.submit "Save changes", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>

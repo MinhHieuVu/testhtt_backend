@@ -1,0 +1,55 @@
+<%= form_with(model: question) do |form| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this Test from being saved:</h2>
+
+      <ul>
+        <% question.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="card">
+    <div class="card-body">
+
+      <div class="form-group">
+        <%= form.label :question_number, "Question number: " %>
+        <%= form.number_field :question_number, class: "form-control form-control-sm", placeholder: "Enter question number" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :content %>
+        <%= form.text_area :content, class: "form-control form-control-sm", placeholder: "Enter content of this question" %>
+      </div>
+
+      <div>Question Option</div>
+      <div class="form-group">
+        <table class="table table-bordered">
+          <%= form.fields_for :question_options do |option| %>
+            <tr>
+              <td><%= option.text_field :content, class: "form-control form-control-sm", placeholder: "Enter content of this option" %></td>
+              <td>
+                <%= option.radio_button :is_answer, 'is_answer', id: "option_#{option.index}", class: "form-control", :checked => option.object.present? && option.object.is_answer? %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :explanation %>
+        <%= form.text_area :explanation, class: "form-control form-control-sm", placeholder: "Enter explanation" %>
+      </div>
+
+
+
+
+      <div class="d-flex justify-content-end">
+        <%= form.submit "Save changes", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>

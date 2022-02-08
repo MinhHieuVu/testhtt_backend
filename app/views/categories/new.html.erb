@@ -1,0 +1,12 @@
+<nav aria-label="breadcrumb" class="mt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Trang chủ", root_path %></li>
+    <li class="breadcrumb-item"><%= link_to "Quản lý Danh mục", group_categories_path %></li>
+    <li class="breadcrumb-item"><%= link_to @group_category.name, group_category_categories_path(@group_category) %></li>
+    <li class="breadcrumb-item active" aria-current="page">Danh mục mới</li>
+  </ol>
+</nav>
+
+<h1>Danh mục mới</h1>
+
+<%= render 'form', category: @category %>

@@ -1,0 +1,19 @@
+<nav aria-label="breadcrumb" class="mt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Trang chủ", root_path %></li>
+    <li class="breadcrumb-item"><%= link_to "Quản lý Danh mục", group_categories_path %></li>
+    <li class="breadcrumb-item"><%= link_to @group_category.name, group_category_categories_path(@group_category) %></li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @category.name %></li>
+  </ol>
+</nav>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_group_category_category_path(@group_category, @category), class: "btn btn-dethimoi text-white" %>
