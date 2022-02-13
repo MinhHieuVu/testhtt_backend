@@ -1,9 +1,83 @@
-<p id="notice"><%= notice %></p>
+<nav aria-label="breadcrumb" class="mt-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><%= link_to "Trang chủ", root_path %></li>
+    <li class="breadcrumb-item"><%= link_to "Quản lý Bài thi", tests_path %></li>
+    <% if @group_question.test.present? %>
+      <li class="breadcrumb-item"><%= link_to @group_question.test.name, test_path(@group_question.test.id) %></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @group_question.name %></li>
+    <% elsif @group_question.parent.present? %>
+      <li class="breadcrumb-item"><%= link_to @group_question.parent.test.name, test_path(@group_question.parent.test.id) %></li>
+      <li class="breadcrumb-item"><%= link_to @group_question.parent.name, group_question_path(@group_question.parent.id) %></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @group_question.id %></li>
+    <% else %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @group_question.name %>
-</p>
+    <% end %>
 
-<%= link_to 'Edit', edit_group_question_path(@group_question) %> |
-<%= link_to 'Back', group_questions_path %>
+  </ol>
+</nav>
+
+<div class="card mt-3">
+  <div class="card-header">
+    <span class="font-weight-bold"><%= @group_question.name %></span>
+
+    <%= link_to "Sửa", edit_group_question_path(@group_question), class: "btn btn-info float-right ml-2" %>
+    <%= link_to "Xóa", group_question_path(@group_question), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right ml-2" %>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered mt-3">
+      <tbody>
+      <tr>
+        <td width="200px" class="font-weight-bold">Description</td>
+        <td><%= @group_question.description %></td>
+      </tr>
+      <tr>
+        <td width="200px" class="font-weight-bold">Content</td>
+        <td><%= @group_question.content %></td>
+      </tr>
+      <tr>
+        <td width="200px" class="font-weight-bold">Guide</td>
+        <td><%= @group_question.guide %></td>
+      </tr>
+      <tr>
+        <td width="200px" class="font-weight-bold">Transcript</td>
+        <td><%= @group_question.transcript %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="m-3">
+    <%# if @group_question.children.present? %>
+<!--      Sub Group Question List-->
+
+      <%# @group_question.children.each do |sub_group_question| %>
+<!--        <div>-->
+          <%#= link_to "##{sub_group_question.id}", group_question_path(sub_group_question) %>
+<!--        </div>-->
+      <%# end %>
+    <%# else %>
+      <% @group_question.questions.each do |question| %>
+        <div class="m-2">
+          <span class="font-weight-bold" style="color: #B00100">Question <%= question.question_number %></span>
+          <span class="float-right">
+            <small><%= link_to "Sửa câu hỏi",  edit_question_path(question), remote: true %></small>
+            <small><%= link_to "Xóa câu hỏi", question_path(question), method: :delete, data: { confirm: 'Are you sure?' } %></small>
+          </span>
+        </div>
+
+        <div class="ml-3"><%= question.content %></div>
+        <div class="ml-4">
+          <% question.question_options.each do |question_option| %>
+            <div>
+              <small class="<%= question_option.is_answer==true ? "correct-option font-weight-bold" : "" %>"><%= question_option.content %></small>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <%# end %>
+  </div>
+  <div class="m-3">
+    <%= link_to "Thêm câu hỏi", new_question_path(group_question_id: @group_question.id), class: 'btn btn-success', remote: true %>
+    <%= link_to "Thêm nhóm câu hỏi con", new_group_question_path(parent_id: @group_question.id), class: 'btn btn-success' %>
+  </div>
+</div>

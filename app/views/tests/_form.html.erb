@@ -24,7 +24,7 @@
       <div class="row form-group">
         <%= form.label :Description, class: "col-sm-2 col-form-label input-label" %>
         <div class="col-sm-10">
-          <%= form.rich_text_area :description, class: "", placeholder: "Please input description", required: true %>
+          <%= form.rich_text_area :description, class: "action-text", placeholder: "Please input description", required: true %>
         </div>
       </div>
 
@@ -76,5 +76,11 @@
     </div>
   </div>
 <% end %>
+
+<style>
+    .action-text {
+        min-height: 300px;
+    }
+</style>
 
 
