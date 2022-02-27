@@ -16,11 +16,11 @@
   <% @test.group_questions.each do |group_question| %>
     <div class="card m-2 p-2">
       <table>
-        <tr>
+        <td>
           <td class="font-weight-bold"><%= group_question.name if group_question.present? %></td>
           <td style="width: 250px">
             <small>
-              <%= link_to "Thêm Nhóm câu hỏi",  new_question_path(group_question_id: group_question.id) %>
+              <%= link_to "Thêm câu hỏi",  new_question_path(group_question_id: group_question.id) %>
               <%= link_to "Sửa",  edit_group_question_path(group_question),class: "mt-6" %>
               <%= link_to "Xóa", group_question_path(group_question), method: :delete, data: { confirm: 'Are you sure?' }, class: "mt-6"  %>
             </small>
@@ -33,7 +33,7 @@
         <% group_question.questions.each do |question| %>
           <tr>
             <td>
-              <small><%= link_to question.name, question_path(question) %></small>
+              <small> Câu Hỏi Số: <%= link_to question.question_number, question_path(question) %></small>
             </td>
             <td style="width: 130px;">
               <small>

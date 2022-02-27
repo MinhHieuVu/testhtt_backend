@@ -10,7 +10,9 @@
       </ul>
     </div>
   <% end %>
-
+  <% if !@question.persisted? %>
+    <%= form.hidden_field :group_question_id, value: params[:group_question_id] %>
+  <% end %>
 
   <div class="card">
     <div class="card-body">
