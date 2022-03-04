@@ -9,45 +9,24 @@
   <div class="card-header">
     <span class="font-weight-bold" style="color: green"><%= @test.name %></span>
 
-    <%= link_to "Sửa", edit_group_question_path(@test), class: "btn btn-info float-right ml-2" %>
-    <%= link_to "Xóa",  group_questions_path(@test), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right ml-2" %>
+
   </div>
 
   <% @test.group_questions.each do |group_question| %>
     <div class="card m-2 p-2">
       <table>
         <td>
-          <td class="font-weight-bold"><%= group_question.name if group_question.present? %></td>
+        <td> <p></p><%= link_to group_question.name, group_question_path(group_question) %></p></td>
+<!--          <td class="font-weight-bold"><%#= group_question.name if group_question.present? %></td>-->
           <td style="width: 250px">
             <small>
-              <%= link_to "Thêm câu hỏi",  new_question_path(group_question_id: group_question.id) %>
-              <%= link_to "Sửa",  edit_group_question_path(group_question),class: "mt-6" %>
-              <%= link_to "Xóa", group_question_path(group_question), method: :delete, data: { confirm: 'Are you sure?' }, class: "mt-6"  %>
+              <%#= link_to "Thêm câu hỏi",  new_question_path(group_question_id: group_question.id) %>
+              <%= link_to "Sửa", edit_group_question_path(group_question), class: "btn btn-info float-right ml-2" %>
+              <%= link_to "Xóa",  group_question_path(group_question), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right ml-2" %>
             </small>
           </td>
         </tr>
       </table>
-      <!--      <div>-->
-      <!--        <div class="card-body">-->
-      <table class="table table-borderless">
-        <% group_question.questions.each do |question| %>
-          <tr>
-            <td>
-              <small> Câu Hỏi Số: <%= link_to question.question_number, question_path(question) %></small>
-            </td>
-            <td style="width: 130px;">
-              <small>
-                <small>
-                  <%= link_to "Sửa", edit_question_path(question) %>
-                  <%= link_to "Xóa", question_path(question), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </small>
-              </small>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-      <!--      </div>-->
-      <!--      </div>-->
     </div>
   <% end %>
   <%#= link_to fa_icon("plus", text: "New group question"), new_admin_group_question_path(test_part_id: test_part.id), class: "mt-6" %>

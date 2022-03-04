@@ -28,8 +28,8 @@
           <td><%= test.difficulty %></td>
           <td><%= test.duration %></td>
           <td><%= test.attempt_times %></td>
-          <td><%= link_to 'Sửa', edit_test_path(test) %></td>
-          <td><%= link_to 'Xóa', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Sửa', edit_test_path(test) , class: "btn btn-info float-right ml-2"%></td>
+          <td><%= link_to 'Xóa', test, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right ml-2" %></td>
         </tr>
       <% end %>
       </tbody>
@@ -37,7 +37,7 @@
 
     <br>
 
-    <%= link_to 'Thêm Bài Thi', new_test_path %>
+    <%= link_to 'Thêm Bài Thi', new_test_path , class: "btn btn-success"%>
     <%#= link_to  new_test_path, class: "btn btn-success" %>
 
   </div>
