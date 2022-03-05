@@ -11,7 +11,6 @@
       <li class="breadcrumb-item active" aria-current="page"><%= @group_question.id %></li>
     <% else %>
     <% end %>
-
   </ol>
 </nav>
 
@@ -44,7 +43,18 @@
           </tr>
         </table>
       </div>
+      <% case question.question_type %>
+      <% when "single_choice" %>
+        <%= render :partial => "questions/show_editor_type_multiple_choice", locals: {question: question} %>
+      <% when "multiple_choice" %>
+        <%= render :partial => "questions/show_editor_type_multiple_choice_check", locals: {question: question} %>
+      <% when "matching" %>
+        <%= render :partial => "questions/show_editor_type_match", locals: {question: question} %>
+      <% when "complete" %>
+        <%= render :partial => "questions/show_editor_type_complete", locals: {question: question} %>
+      <% end %>
     <% end %>
+
 
   </div>
   <div class="m-3">

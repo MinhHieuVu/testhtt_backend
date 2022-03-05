@@ -1,0 +1,56 @@
+<%= form_with(model: question) do |form| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+        <% question.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :group_question_id, value: @group_question_id %>
+
+  <div class="row form-group">
+    <%= form.label :question_number, class: "col-sm-2 col-form-label input-label" %>
+    <div class="col-sm-10">
+      <%= form.number_field :question_number, class: "form-control", placeholder: "Please input question number. For example: 1", required: true %>
+    </div>
+  </div>
+
+
+  <div class="row form-group">
+    <%= form.label :question_type, class: "col-sm-2 col-form-label input-label" %>
+    <div class="col-sm-10">
+      <%= question.question_type.humanize if question.question_type.present? %>
+      <div class="small">You can't edit question type. If wrong question type. Please delete this question and and new
+        one!
+      </div>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <%= form.label :explanation, class: "col-sm-2 col-form-label input-label" %>
+    <div class="col-sm-10">
+      <%= form.text_area :explanation, class: "form-control", placeholder: "Please input question explanation." %>
+    </div>
+  </div>
+
+  <% if question.question_type == 'single_choice' %>
+    <%= render "form_single_choice", form: form %>
+  <% elsif question.question_type == 'multiple_choice' %>
+    <%= render "form_multiple_choice", form: form %>
+  <% elsif question.question_type == 'matching' %>
+  <% elsif question.question_type == 'complete' %>
+  <% else %>
+    <div>Question type is <%= question.question_type %> was not supported. Please contact to administrator for getting
+      support.
+    </div>
+  <% end %>
+
+  <div class="d-flex justify-content-end">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

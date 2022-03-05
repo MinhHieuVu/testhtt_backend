@@ -1,0 +1,5 @@
+<div>
+  <% question.question_options.each do |option| %>
+      <div class='ml-2 <%= "text-danger" if option.is_answer? %>'><%= option.content %></div>
+  <% end %>
+</div>
