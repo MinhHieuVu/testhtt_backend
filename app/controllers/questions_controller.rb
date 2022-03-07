@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1/edit
   def edit
-    if @question.question_type.blank?
+    if @question.question_type.present?
       if @question.question_type == 'single_choice'
         number = 4
       elsif @question.question_type == 'multiple_choice'
