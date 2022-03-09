@@ -43,6 +43,24 @@
           </tr>
         </table>
       </div>
+      <div>
+        <div>
+          Question number: <%= question.question_number %>
+        </div>
+        <div>
+          Question title: <%= question.name %>
+        </div>
+        <div>
+          Question:<%= simple_format question.content if question.content.blank? %>
+        </div>
+        <div>
+          Question type: <%= question.question_type.humanize if question.question_type.present? %>
+        </div>
+        <div>
+          Explanation: <%= simple_format question.explanation if question.explanation.present? %>
+        </div>
+
+        <hr>
       <% case question.question_type %>
       <% when "single_choice" %>
         <%= render :partial => "questions/show_editor_type_multiple_choice", locals: {question: question} %>
@@ -55,7 +73,7 @@
       <% end %>
     <% end %>
 
-
+    </div>
   </div>
   <div class="m-3">
     <%= link_to "Thêm câu hỏi", new_question_path(group_question_id: @group_question.id), class: 'btn btn-success' %>
