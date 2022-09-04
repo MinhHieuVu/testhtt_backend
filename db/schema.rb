@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_03_04_153253) do
 
-  create_table "action_text_rich_texts", charset: "utf8mb4", force: :cascade do |t|
+  create_table "action_text_rich_texts", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
     t.string "record_type", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8mb3", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -44,13 +44,13 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_variant_records", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "categories", charset: "utf8mb4", force: :cascade do |t|
+  create_table "categories", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.bigint "group_category_id"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
-  create_table "group_categories", charset: "utf8mb4", force: :cascade do |t|
+  create_table "group_categories", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "position"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "group_questions", charset: "utf8mb4", force: :cascade do |t|
+  create_table "group_questions", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.text "content", size: :medium
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.index ["user_id"], name: "index_group_questions_on_user_id"
   end
 
-  create_table "question_options", charset: "utf8mb4", force: :cascade do |t|
+  create_table "question_options", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "question_id"
     t.text "content", size: :medium
     t.boolean "is_answer"
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.index ["user_id"], name: "index_question_options_on_user_id"
   end
 
-  create_table "questions", charset: "utf8mb4", force: :cascade do |t|
+  create_table "questions", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "group_question_id"
     t.integer "question_number"
     t.string "name"
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
-  create_table "tests", charset: "utf8mb4", force: :cascade do |t|
+  create_table "tests", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.integer "difficulty"
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
-  create_table "tests_categories", charset: "utf8mb4", force: :cascade do |t|
+  create_table "tests_categories", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "test_id"
     t.bigint "category_id"
     t.integer "position"
@@ -159,7 +159,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.index ["test_id"], name: "index_tests_categories_on_test_id"
   end
 
-  create_table "user_take_tests", charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_take_tests", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "test_id"
     t.datetime "start_time"
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_153253) do
     t.index ["user_id"], name: "index_user_take_tests_on_user_id"
   end
 
-  create_table "user_test_responses", charset: "utf8mb4", force: :cascade do |t|
+  create_table "user_test_responses", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_take_test_id"
     t.bigint "question_id"
     t.string "answer"
