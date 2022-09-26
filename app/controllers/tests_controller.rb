@@ -65,7 +65,7 @@ class TestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def test_params
-      params.require(:test).permit(:name, :description, :difficulty, :user_id, :category_ids,
+      params.require(:test).permit(:name, :description, :difficulty, :user_id,
                                    :duration, :attempt_times, :open_time, :close_time, :release_time, :position)
     end
 end
